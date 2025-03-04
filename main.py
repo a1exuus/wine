@@ -43,10 +43,8 @@ def get_year_word_form(years: int) -> str:
 
 
 def load_wine_data():
-    first_wines = pandas.read_excel('wine.xlsx').T.to_dict()
-    second_wines = pandas.read_excel('wine2.xlsx', na_values='None', keep_default_na=False).T.to_dict()
-    third_wines = pandas.read_excel('wine3.xlsx', na_values='None', keep_default_na=False).T.to_dict()
-    return first_wines, second_wines, third_wines
+    wines = pandas.read_excel('wine3.xlsx', na_values='None', keep_default_na=False).T.to_dict()
+    return wines
 
 
 def generate_html(years, wines):
@@ -64,8 +62,8 @@ def run_server():
 
 
 def main():
-    first_wines, second_wines, third_wines = load_wine_data()
-    grouped_wines = group_production(third_wines)
+    wines = load_wine_data()
+    grouped_wines = group_production(wines)
     generate_html(YEARS, grouped_wines)
     run_server()
 
