@@ -10,7 +10,7 @@ env = Environment(
     autoescape=select_autoescape(['html', 'xml'])
 )
 
-template = env.get_template('index.html')
+template = env.get_template('template.html')
 
 current_year = date.today().year
 years = current_year - 1920
@@ -45,19 +45,12 @@ def get_year_word_form(years: int) -> str:
 output = group_production(second_wines_read_out)
 
 
-''' for category in output:
-    print(f'А это категория: {category}')
-    for wine in output[category]:
-        print(f'Это вино: {wine}')
-        print(f'Название: {wine['Название']}') '''
-
-
 rendered_page = template.render(
     years=get_year_word_form(years),
     wines=group_production(third_wines_read_out)
 )
 
-with open('index.html', 'w', encoding="utf8") as file:
+with open('template.html', 'w', encoding="utf8") as file:
     file.write(rendered_page)
 
 server = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
