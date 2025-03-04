@@ -3,6 +3,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from datetime import date
 import pandas
 import collections
+import argparse
 
 CURRENT_YEAR = date.today().year
 FOUNDATION_YEAR = 1920
@@ -13,6 +14,12 @@ env = Environment(
     autoescape=select_autoescape(['html', 'xml'])
 )
 template = env.get_template('template.html')
+
+
+def get_input_data():
+    parser = argparse.ArgumentParser(description='Данный скрипт структурирует меню и возраст сайта и сразу же вносит изменения в файл сайта')
+    parser.add_argument('-path', '--path_to_xlsx_file', help='Путь до .xlsx вайла вашего меню', type=str, default='wine.xlsx')
+    args = parser.parse_args()
 
 
 def group_production(production):
