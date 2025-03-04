@@ -38,8 +38,7 @@ def get_year_word_form(years: int) -> str:
         return f"{years} год"
     elif 2 <= last_digit <= 4:
         return f"{years} года"
-    else:
-        return f"{years} лет"
+    return f"{years} лет"
 
 
 def load_wine_data():
