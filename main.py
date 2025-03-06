@@ -51,7 +51,7 @@ def generate_html(years, wines):
         years=get_year_word_form(years),
         wines=wines
     )
-    with open('template.html', 'w', encoding="utf8") as file:
+    with open('index.html', 'w', encoding="utf8") as file:
         file.write(rendered_page)
 
 
