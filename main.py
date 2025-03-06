@@ -13,8 +13,6 @@ env = Environment(
     loader=FileSystemLoader('.'),
     autoescape=select_autoescape(['html', 'xml'])
 )
-template = env.get_template('template.html')
-
 
 def get_input_data():
     parser = argparse.ArgumentParser(description='Данный скрипт структурирует меню и возраст сайта и сразу же вносит изменения в файл сайта')
@@ -46,7 +44,7 @@ def load_wine_data():
     return wines
 
 
-def generate_html(years, wines):
+def generate_html(years, wines, template):
     rendered_page = template.render(
         years=get_year_word_form(years),
         wines=wines
@@ -61,9 +59,10 @@ def run_server():
 
 
 def main():
+    template = env.get_template('template.html')
     wines = load_wine_data()
     grouped_wines = group_production(wines)
-    generate_html(YEARS, grouped_wines)
+    generate_html(YEARS, grouped_wines, template)
     run_server()
 
 
