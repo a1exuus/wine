@@ -5,19 +5,11 @@ import pandas
 import collections
 import argparse
 
-CURRENT_YEAR = date.today().year
-FOUNDATION_YEAR = 1920
-YEARS = CURRENT_YEAR - FOUNDATION_YEAR
-
-env = Environment(
-    loader=FileSystemLoader('.'),
-    autoescape=select_autoescape(['html', 'xml'])
-)
 
 def get_input_data():
     parser = argparse.ArgumentParser(description='Данный скрипт структурирует меню и возраст сайта и сразу же вносит изменения в файл сайта')
     parser.add_argument('-path', '--path_to_xlsx_file', help='Путь до .xlsx файла вашего меню', type=str, default='wine.xlsx')
-    parser.parse_args()
+    return parser.parse_args()
 
 
 def group_production(production):
@@ -59,10 +51,19 @@ def run_server():
 
 
 def main():
+    current_year = date.today().year
+    foundation_year = 1920
+    years = current_year - foundation_year
+
+    env = Environment(
+        loader=FileSystemLoader('.'),
+        autoescape=select_autoescape(['html', 'xml'])
+    )
     template = env.get_template('template.html')
+
     wines = load_wine_data()
     grouped_wines = group_production(wines)
-    generate_html(YEARS, grouped_wines, template)
+    generate_html(years, grouped_wines, template)
     run_server()
 
 
