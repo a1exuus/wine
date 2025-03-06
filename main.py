@@ -16,7 +16,7 @@ env = Environment(
 
 def get_input_data():
     parser = argparse.ArgumentParser(description='Данный скрипт структурирует меню и возраст сайта и сразу же вносит изменения в файл сайта')
-    parser.add_argument('-path', '--path_to_xlsx_file', help='Путь до .xlsx вайла вашего меню', type=str, default='wine.xlsx')
+    parser.add_argument('-path', '--path_to_xlsx_file', help='Путь до .xlsx файла вашего меню', type=str, default='wine.xlsx')
     parser.parse_args()
 
 
