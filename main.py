@@ -32,7 +32,7 @@ def get_year_word_form(years: int) -> str:
 
 
 def load_wine_data():
-    wines = pandas.read_excel('wine3.xlsx', na_values='None', keep_default_na=False).T.to_dict()
+    wines = pandas.read_excel(get_input_data()[0], na_values='None', keep_default_na=False).T.to_dict()
     return wines
 
 
