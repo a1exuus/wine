@@ -31,8 +31,8 @@ def get_year_word_form(years: int) -> str:
     return f"{years} лет"
 
 
-def load_wine_data():
-    wines = pandas.read_excel(get_input_data()[0], na_values='None', keep_default_na=False).T.to_dict()
+def load_wine_data(path_to_xlsx):
+    wines = pandas.read_excel(path_to_xlsx()[0], na_values='None', keep_default_na=False).T.to_dict()
     return wines
 
 
@@ -61,7 +61,8 @@ def main():
     )
     template = env.get_template('template.html')
 
-    wines = load_wine_data()
+    path_to_xlsx = get_input_data()[0]
+    wines = load_wine_data(path_to_xlsx)
     grouped_wines = group_production(wines)
     generate_html(years, grouped_wines, template)
     run_server()
