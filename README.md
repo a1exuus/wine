@@ -19,7 +19,7 @@ pip3 install -r requirements.txt
 ```
 - Запустите сайт командой
 ```sh
-python3 main.py -path=ваш_путь_до_файла_с_меню runserver
+python3 main.py -path=ваш_путь_до_файла_с_меню_без_.xlsx runserver
 ```
 - Перейдите на сайт по адресу [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
