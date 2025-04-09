@@ -26,7 +26,7 @@ def main():
 
     path_to_xlsx = get_input_data()
 
-    if path_to_xlsx == 'runserver':
+    if path_to_xlsx[1] == 'runserver':
         run_server()
 
     wines = load_wine_data(path_to_xlsx)
