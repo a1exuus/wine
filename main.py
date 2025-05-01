@@ -20,20 +20,17 @@ def main():
     current_year = date.today().year
     foundation_year = 1920
     years = current_year - foundation_year
-    
+
     env = Environment(loader=FileSystemLoader('.'), autoescape=select_autoescape(['html', 'xml']))
     template = env.get_template('template.html')
 
-    path_to_xlsx = get_input_data()
+    args = get_input_data()
 
-    if path_to_xlsx[1] == 'runserver':
+    if args.command == 'runserver':
+        wines = load_wine_data(args.path)
+        grouped_wines = group_production(wines)
+        generate_html(years, grouped_wines, template)
         run_server()
-
-    wines = load_wine_data(path_to_xlsx)
-    grouped_wines = group_production(wines)
-    generate_html(years, grouped_wines, template)
-    
-    run_server()
 
 
 if __name__ == '__main__':

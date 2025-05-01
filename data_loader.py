@@ -1,13 +1,19 @@
 import pandas
 import collections
 import argparse
-import sys
 
 
 def get_input_data():
-    parser = argparse.ArgumentParser(description='Данный скрипт структурирует меню и возраст сайта и сразу же вносит изменения в файл сайта')
+    parser = argparse.ArgumentParser(
+        description='Данный скрипт структурирует меню и возраст сайта и сразу же вносит изменения в файл сайта'
+    )
     parser.add_argument('-path', '-path_to_xlsx_file', help='Путь до .xlsx файла вашего меню', type=str)
-    return parser.parse_args(sys.argv[1:]).path
+
+    subparsers = parser.add_subparsers(dest='command', required=True, help='Доступные команды')
+    subparsers.add_parser('runserver', help='Запустить сервер')
+
+    args = parser.parse_args()
+    return args
 
 
 def load_wine_data(path_to_xlsx):
