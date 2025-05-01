@@ -7,7 +7,7 @@ def get_input_data():
     parser = argparse.ArgumentParser(
         description='Данный скрипт структурирует меню и возраст сайта и сразу же вносит изменения в файл сайта'
     )
-    parser.add_argument('-path', '-path_to_xlsx_file', help='Путь до .xlsx файла вашего меню', type=str)
+    parser.add_argument('-path', '-path_to_xlsx_file', help='Путь до .xlsx файла вашего меню', type=str, required=True)
 
     subparsers = parser.add_subparsers(dest='command', required=True, help='Доступные команды')
     subparsers.add_parser('runserver', help='Запустить сервер')
