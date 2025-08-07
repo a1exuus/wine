@@ -7,9 +7,18 @@ def get_input_data():
     parser = argparse.ArgumentParser(
         description='Данный скрипт структурирует меню и возраст винодельни и сразу же вносит изменения в файл сайта'
     )
-    parser.add_argument('-path', '-path_to_xlsx_file', help='Путь до .xlsx файла вашего меню', type=str, required=True)
+    parser.add_argument(
+        '--path',
+        help='Путь до .xlsx файла вашего меню',
+        type=str,
+        required=True
+        )
 
-    subparsers = parser.add_subparsers(dest='command', required=True, help='Доступные команды')
+    subparsers = parser.add_subparsers(
+        dest='command',
+        required=True,
+        help='Доступные команды'
+        )
     subparsers.add_parser('runserver', help='Запустить сервер')
 
     args = parser.parse_args()
@@ -17,7 +26,11 @@ def get_input_data():
 
 
 def load_wine_data(path_to_xlsx):
-    wines = pandas.read_excel(path_to_xlsx, na_values='None', keep_default_na=False).T.to_dict()
+    wines = pandas.read_excel(
+        path_to_xlsx,
+        na_values='None',
+        keep_default_na=False
+        ).T.to_dict()
     return wines
 
 

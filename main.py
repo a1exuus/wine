@@ -5,7 +5,10 @@ from data_loader import load_wine_data, group_production, get_year_word_form, ge
 
 
 def generate_html(years, wines, template):
-    rendered_page = template.render(years=get_year_word_form(years), wines=wines)
+    rendered_page = template.render(
+        years=get_year_word_form(years),
+        wines=wines
+        )
     with open('index.html', 'w', encoding='utf8') as file:
         file.write(rendered_page)
 
@@ -21,7 +24,10 @@ def main():
     foundation_year = 1920
     years = current_year - foundation_year
 
-    env = Environment(loader=FileSystemLoader('.'), autoescape=select_autoescape(['html', 'xml']))
+    env = Environment(
+        loader=FileSystemLoader('.'),
+        autoescape=select_autoescape(['html', 'xml'])
+        )
     template = env.get_template('template.html')
 
     args = get_input_data()
